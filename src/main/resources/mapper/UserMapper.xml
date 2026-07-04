@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.UserMapper">
+
+    <!-- 字段映射 -->
+    <resultMap id="userMap" type="com.example.demo.entity.User">
+        <id     column="id"          property="id"/>
+        <result column="username"    property="username"/>
+        <result column="nickname"    property="nickname"/>
+        <result column="phone"       property="phone"/>
+        <result column="email"       property="email"/>
+        <result column="status"      property="status"/>
+        <result column="dept_id"     property="deptId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!-- 查询所有用户 -->
+    <select id="listAll" resultMap="userMap">
+        SELECT id, username, nickname, phone, email, status, dept_id, create_time, update_time
+        FROM t_user
+        ORDER BY id
+    </select>
+
+    <!-- 按 ID 查 -->
+    <select id="getById" resultMap="userMap">
+        SELECT id, username, nickname, phone, email, status, dept_id, create_time, update_time
+        FROM t_user
+        WHERE id = #{id}
+    </select>
+
+    <!-- 模糊搜索 -->
+    <select id="searchByUsername" resultMap="userMap">
+        SELECT id, username, nickname, phone, email, status, dept_id, create_time, update_time
+        FROM t_user
+        WHERE username LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+</mapper>
