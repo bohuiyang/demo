@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
             UserVO vo = new UserVO();
             vo.setId(user.getId());
             vo.setUsername(user.getUsername());
-            vo.setNickname(user.getNickname());
+            vo.setNickname(user.getNickname() != null ? user.getNickname() : "未知用户");
             vo.setEmail(user.getEmail());
             vo.setStatus(user.getStatus());
             // 状态码 → 中文
