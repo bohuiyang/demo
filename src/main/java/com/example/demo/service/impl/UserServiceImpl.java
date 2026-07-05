@@ -62,6 +62,7 @@ public class UserServiceImpl implements UserService {
         vo.setUsername(user.getUsername());
         vo.setNickname(user.getNickname() != null ? user.getNickname() : "");
         vo.setEmail(user.getEmail() != null ? user.getEmail() : "");
+        vo.setPhone(user.getPhone());
         vo.setStatus(user.getStatus());
         vo.setStatusText(user.getStatus() == 1 ? "正常" : "禁用");
         if (user.getCreateTime() != null) {

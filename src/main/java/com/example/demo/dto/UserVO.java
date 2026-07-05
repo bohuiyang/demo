@@ -13,7 +13,7 @@ public class UserVO {
     private Integer status;
     private String statusText;   // 状态中文描述（不是数据库字段，是 Service 里拼的）
     private String createTime;   // 格式化成字符串，方便前端显示
-
+    private String phone;
     // === getter / setter ===
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -35,4 +35,12 @@ public class UserVO {
 
     public String getCreateTime() { return createTime; }
     public void setCreateTime(String createTime) { this.createTime = createTime; }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }
