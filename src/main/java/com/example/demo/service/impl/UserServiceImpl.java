@@ -11,6 +11,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * ⚠️ 这是张三（zhangsan）推送到 main 分支的版本
+ *
+ * 张三改了：
+ * 1. setNickname() 加了 null 判断，null → 空字符串 ""（你改成了 "未知用户"，冲突点！）
+ * 2. setEmail() 也加了 null 判断
+ * 3. listUsers() 方法上加了注释
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -25,14 +33,14 @@ public class UserServiceImpl implements UserService {
             UserVO vo = new UserVO();
             vo.setId(user.getId());
             vo.setUsername(user.getUsername());
+
             vo.setNickname(user.getNickname() != null ? user.getNickname() : "未知用户");
-            vo.setEmail(user.getEmail());
+            vo.setEmail(user.getEmail() != null ? user.getEmail() : "");
             vo.setStatus(user.getStatus());
-            // 状态码 → 中文
             vo.setStatusText(user.getStatus() == 1 ? "正常" : "禁用");
-            // 日期格式化
             if (user.getCreateTime() != null) {
-                vo.setCreateTime(user.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                vo.setCreateTime(user.getCreateTime()
+                        .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             }
             // ⚠️ 没有 setPhone —— M3 的练习：加 phone 字段
             return vo;
@@ -48,12 +56,13 @@ public class UserServiceImpl implements UserService {
         UserVO vo = new UserVO();
         vo.setId(user.getId());
         vo.setUsername(user.getUsername());
-        vo.setNickname(user.getNickname());
-        vo.setEmail(user.getEmail());
+        vo.setNickname(user.getNickname() != null ? user.getNickname() : "");
+        vo.setEmail(user.getEmail() != null ? user.getEmail() : "");
         vo.setStatus(user.getStatus());
         vo.setStatusText(user.getStatus() == 1 ? "正常" : "禁用");
         if (user.getCreateTime() != null) {
-            vo.setCreateTime(user.getCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            vo.setCreateTime(user.getCreateTime()
+                    .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         }
         return vo;
     }
