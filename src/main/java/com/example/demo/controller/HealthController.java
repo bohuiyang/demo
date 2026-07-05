@@ -12,7 +12,7 @@ public class HealthController {
     @GetMapping("/health")
     public Map<String, Object> health() {
         Map<String, Object> result = new HashMap<>();
-        result.put("status", "UP");
+        result.put("version", "1.0.0");
         result.put("timestamp", System.currentTimeMillis());
         return result;
     }
