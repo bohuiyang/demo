@@ -34,12 +34,8 @@ public class UserServiceImpl implements UserService {
             vo.setId(user.getId());
             vo.setUsername(user.getUsername());
 
-            // 【冲突行 ↓】张三：null → ""
-            vo.setNickname(user.getNickname() != null ? user.getNickname() : "");
-
-            // 【冲突行 ↓】张三：email 也加了 null 处理
+            vo.setNickname(user.getNickname() != null ? user.getNickname() : "未知用户");
             vo.setEmail(user.getEmail() != null ? user.getEmail() : "");
-
             vo.setStatus(user.getStatus());
             vo.setStatusText(user.getStatus() == 1 ? "正常" : "禁用");
             if (user.getCreateTime() != null) {
